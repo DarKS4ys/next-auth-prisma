@@ -1,11 +1,13 @@
-import zod from "zod";
+import z from "zod";
 
-const envSchema = zod.object({
-  DATABASE_URL: zod.string().nonempty(),
-  GOOGLE_CLIENT_ID: zod.string().nonempty(),
-  GOOGLE_CLIENT_SECRET: zod.string().nonempty(),
-  NEXTAUTH_URL: zod.string().nonempty(),
-  NEXTAUTH_SECRET: zod.string().nonempty(),
+const envSchema = z.object({
+  OPENAI_API_KEY: z.string().trim().min(1),
+  DATABASE_URL: z.string().trim().min(1),
+  GOOGLE_CLIENT_ID: z.string().trim().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().trim().min(1),
+  NEXTAUTH_URL: z.string().trim().min(1),
+  NEXTAUTH_SECRET: z.string().trim().min(1),
+  ADMIN_EMAILS: z.string().trim().min(1),
 });
 
 export const env = envSchema.parse(process.env);
